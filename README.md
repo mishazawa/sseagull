@@ -2,7 +2,7 @@
 
 A Zola theme.
 
-[logo](./static/img/gull_rect.svg)
+![gull](./static/img/gull_rect.svg)
 
 ## Installation
 
