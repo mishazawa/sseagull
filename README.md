@@ -1,0 +1,3 @@
+# Seagull
+
+A Zola theme.
