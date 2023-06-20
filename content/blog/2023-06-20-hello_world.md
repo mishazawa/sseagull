@@ -9,3 +9,5 @@ taxonomies.authors = ["Me", "You"]
 # Hello World!
 
 I'm creating this theme.
+
+![gull](/img/gull.svg)
