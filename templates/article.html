@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+
+{% block content %}
+<main class="page">
+    {{ macros::taxonomies(taxonomies=page.taxonomies) }}
+    {{ macros::date(date=page.date)}}
+
+    {{ page.content | safe }}
+</main>
+{% endblock content %}

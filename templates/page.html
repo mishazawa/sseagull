@@ -1,0 +1,7 @@
+{% extends "index.html" %}
+
+{% block content %}
+<main class="page">
+    {{ macros::replace_toc(resource=page) | safe }}
+</main>
+{% endblock content %}
