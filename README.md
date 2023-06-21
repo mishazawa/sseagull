@@ -6,17 +6,27 @@ A Zola theme.
 
 ## Installation
 
-Add the theme as a git submodule:
+Add the theme as a git submodule
 
 ```bash
 git submodule add --name seagull https://git.42l.fr/HugoTrentesaux/seagull.git themes/seagull
 ```
 
-and enable the theme in your `config.toml`
+Enable the theme in your `config.toml`
 
 ```
 theme = "seagull"
 ```
+
+Add a `_variables.sass` file in a `sass` folder
+
+```sh
+mkdir sass
+touch sass/_variables.sass
+```
+
+This allows to customize theme colors and font.
+
 
 ## Features
 

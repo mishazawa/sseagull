@@ -68,3 +68,8 @@ img = "https://cdn.simpleicons.org/instagram/FFF"
 
 [extra.theme]
 toc_title = "Table of content"
+feed_thumb_height = 240
+
+[extra.theme.date]
+format="%Y-%m-%d"
+locale="en_US"

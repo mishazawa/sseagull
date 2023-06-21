@@ -51,7 +51,9 @@
 {%- if taxonomies.tags -%}{{ macros::tags(tags=taxonomies.tags )}}{%- endif -%}
 {%- endmacro -%}
 
-{%- macro date(date, icon=true, format="%Y-%m-%d", locale="en_US") -%}
+{%- macro date(date, icon=true) -%}
+{%- set locale = config.extra.theme.date.locale -%}
+{%- set format = config.extra.theme.date.format -%}
 {%- if date -%}{% if icon %}{{i::clock(size="16px")}}{% endif %}{{ date | date(format=format, locale=locale) }}{%- endif -%}
 {%- endmacro -%}
 
@@ -94,6 +96,15 @@
 </script>
 {% endmacro photoswipe_script %}
 
+{# === replace gallery === #}
+{% macro replace_gallery(resource) %}
+	{%- set content = resource.content %}
+	{%- if content is containing("[GALLERY]") %}
+		{%- set content = content | replace(from="[GALLERY]", to=self::gallery(images=resource.extra.gallery)) %}
+	{%- endif -%}
+	{{ content | safe }}
+{%- endmacro %}
+
 
 {# ========================= #}
 {# === table of contents === #}
@@ -125,10 +136,7 @@
 {%- endif %}
 {%- endmacro %}
 
-
-{# =================== #}
 {# === replace toc === #}
-{# =================== #}
 {% macro replace_toc(resource) %}
 	{%- set content = resource.content %}
 	{%- if content is containing("[TOC]") %}
