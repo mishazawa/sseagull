@@ -47,6 +47,15 @@ links = [
     "blog/_index.md",
 ]
 
+# This configures the footer menu
+[extra.footer]
+links = [
+    "_index.md",
+    "about.md",
+    "contact.md",
+    "contribute.md",
+]
+
 # the following links will appear in the footer
 [[extra.social.link]]
 name = "Mastodon"

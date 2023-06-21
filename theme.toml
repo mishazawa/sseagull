@@ -32,12 +32,12 @@ n_articles = 5
 # This configures the navigation menu
 [extra.nav]
 links = [
-    # "_index.md",
-    "features.md",
-    "contribute.md",
-    "map/_index.md",
-    "contact.md",
-    "blog/_index.md",
+    "_index.md",
+]
+
+[extra.footer]
+links = [
+    "_index.md"
 ]
 
 # the following links will appear in the footer

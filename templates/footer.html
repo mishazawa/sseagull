@@ -13,10 +13,16 @@
     </div>
 
     <div>
-        <div><a href="{{ get_url(path="@/_index.md") }}">Home</a></div>
-        <div><a href="{{ get_url(path="@/about.md") }}">About</a></div>
-        <div><a href="{{ get_url(path="@/contact.md") }}">Contact</a></div>
-        <div><a href="{{ get_url(path="@/contribute.md") }}">Contribute</a></div>
+        {% for link in config.extra.footer.links %}
+            {#- hack to get page or section #}
+            {%- if link is ending_with("_index.md") -%}
+            {%- set s = get_section(path=link) -%}
+                <div><a href="{{ s.permalink }}">{{s.title}}</a></div>
+            {%- else -%}
+            {%- set p = get_page(path=link) -%}
+                <div><a href="{{ p.permalink }}">{{p.title}}</a></div>
+            {%- endif -%}
+        {% endfor %}
     </div>
 
     <div>

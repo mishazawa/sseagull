@@ -25,8 +25,7 @@ mkdir sass
 touch sass/_variables.sass
 ```
 
-This allows to customize theme colors and font.
-
+Add a `_index.md` file in your `content` folder.
 
 ## Features
 
