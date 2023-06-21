@@ -37,3 +37,12 @@ You can customize the theme with the `/sass/_variables.sass` file.
 ## Support
 
 I'll provide support on demand on [Zola forum](https://zola.discourse.group/) if you tag [@HugoTrentesaux](https://zola.discourse.group/u/hugotrentesaux/summary)
+
+## Build website
+
+Because of the hack used to allow theme customization, before building seagull website itself, you need to create an empty file
+
+```sh
+mkdir ../../sass
+touch ../../sass/_variables.sass
+```
