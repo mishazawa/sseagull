@@ -6,7 +6,7 @@
 
 {% block content %}
 <main class="page">
-    <h1 class="col center">{{ section.title}}</h1>
+    <h1 class="center">{{ section.title | safe}}</h1>
     {% for page in section.pages %}
       {% include "gallery/item.html" %}
 

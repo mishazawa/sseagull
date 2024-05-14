@@ -3,7 +3,7 @@
     <a href="{{url}}" class="feed-preview">
     {%- if article.extra.thumbnail -%}
     {%- set thumbnail = article.extra.thumbnail -%}
-    <img class="feed-img hidden-s" src="
+    <img alt="" class="feed-img hidden-s" src="
     {%- if thumbnail is matching("[.](jpg|png|jpeg)$") -%}
     {{ macros::resize_static(path=article.extra.thumbnail,height=config.extra.theme.feed_thumb_height) }}
     {%- else -%}
@@ -11,7 +11,7 @@
     {%- endif -%}"/>
     {%- endif %}
     <div class="feed-desc">
-        <h3>{{ article.title }}</h3>
+        <h3>{{ article.title | safe}}</h3>
         {%- if article.description -%}<p>{{ article.description }}</p>{%- endif %}
     </div>
     </a>
