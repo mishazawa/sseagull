@@ -1,5 +1,5 @@
 +++
-title = "Table of content"
+title = "Table of <i>content</i>"
 description = "This blog post shows the table of content feature and also the infobox shortcodes."
 
 extra.thumbnail = "/img/bird-3.jpg"
