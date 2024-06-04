@@ -12,7 +12,7 @@ demo = "https://seagull.coinduf.eu/"
 
 # The theme author info: you!
 [author]
-name = "Hugo Trentesuas"
+name = "Hugo Trentesaux"
 homepage = "https://trentesaux.fr/"
 
 # Any variable there can be overridden in the end user `config.toml`
