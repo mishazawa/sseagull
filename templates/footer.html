@@ -17,10 +17,10 @@
             {#- hack to get page or section #}
             {%- if link is ending_with("_index.md") -%}
             {%- set s = get_section(path=link) -%}
-                <div><a href="{{ s.permalink }}">{{s.title}}</a></div>
+                <div><a href="{{ s.permalink }}">{{s.title | safe}}</a></div>
             {%- else -%}
             {%- set p = get_page(path=link) -%}
-                <div><a href="{{ p.permalink }}">{{p.title}}</a></div>
+                <div><a href="{{ p.permalink }}">{{p.title | safe}}</a></div>
             {%- endif -%}
         {% endfor %}
     </div>

@@ -10,16 +10,16 @@
       {%- if not s.extra.hide -%}
       <div class="dropdown">
         <a href="{{s.permalink}}" class="dropper 
-          {%- if current_path %}{% if current_path is starting_with(s.path) %} active{% endif %}{% endif -%}">{{s.title}} 
+          {%- if current_path %}{% if current_path is starting_with(s.path) %} active{% endif %}{% endif -%}">{{s.title | safe}} 
           {%- if s.extra.no_list_pages %}{# nothing #}{% else %}{{i::caret_down(color="white")}}{% endif %}</a>
         <div class="dropdown-content">
           {%- for sec in s.subsections -%}
           {%- set sec = get_section(path=sec) -%}
-          <a href="{{sec.permalink}}"><span>{{sec.title}}</span></a>
+          <a href="{{sec.permalink}}"><span>{{sec.title | safe}}</span></a>
           {% endfor -%}
           {% if s.extra.no_list_pages %}{# nothing #}{% else %}
             {%- for page in s.pages -%}
-            <a href="{{page.permalink}}"><span>{{page.title}}</span></a>
+            <a href="{{page.permalink}}"><span>{{page.title | safe}}</span></a>
             {% endfor -%}
           {% endif %}
         </div>
@@ -30,7 +30,7 @@
       {%- if not p.extra.hide -%}
       <a href="{{ p.permalink }}" class="item 
         {%- if current_path %}{% if current_path == p.path %} active{% endif %}{% endif -%}
-        "><div>{{p.title}}</div></a>
+        "><div>{{p.title | safe}}</div></a>
       {%- endif -%}
     {% endif %}
     {% endfor %}

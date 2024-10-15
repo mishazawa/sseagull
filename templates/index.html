@@ -8,8 +8,8 @@
     {#--------- the following block can be replaced ---------#}
     {# title is displayed in browser tab #}
     {%- block title %}<title>{{config.extra.name}} | 
-        {%- if page %} {{page.title}}
-        {%- elif section %} {{section.title}}
+        {%- if page %} {{page.title | safe}}
+        {%- elif section %} {{section.title | safe}}
         {%- elif term %} {{term.name}}
         {%- elif taxonomy %} {{taxonomy.name}}
         {%- else %} ???

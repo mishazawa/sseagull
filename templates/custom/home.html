@@ -75,7 +75,7 @@
             {% set posts = get_section(path="blog/_index.md") -%}
             <ul>
                 {%- for article in posts.pages | slice(end=config.extra.homepage.n_articles) %}
-                <li><a href="{{article.permalink}}">{{ article.title }}</a> {{ macros::date(date=article.date, icon=false) }}</li>
+                <li><a href="{{article.permalink}}">{{ article.title | safe }}</a> {{ macros::date(date=article.date, icon=false) }}</li>
                 {%- endfor %}
             </ul>
 
