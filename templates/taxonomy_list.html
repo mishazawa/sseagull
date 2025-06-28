@@ -2,9 +2,9 @@
 
 {% block content %}
 <main class="page">
-    <h1>{{ taxonomy.name }}</h1>
+    <h1>{{ taxonomy.name }} <span class="gray">({{taxonomy | length}})</span></h1>
     {%- for term in terms -%}
-    <a href="{{term.permalink}}"> {{term.name}} </a><br>
+    <a href="{{term.permalink}}"> {{term.name}} </a> <span class="gray">({{term.page_count}})</span><br>
     {%- endfor -%}
 </main>
 {% endblock content %}
