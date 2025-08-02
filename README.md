@@ -33,6 +33,12 @@ Features can be seen on the demo website: https://seagull.coinduf.eu/.
 
 You can customize the theme with the `/sass/_variables.sass` file.
 
+Examples of websites built with this theme:
+
+- https://scientifiquesenrebellion.fr/
+- https://labasetoulouse.fr/
+- https://trentesaux.fr/
+
 ## Support
 
 I'll provide support on demand on [Zola forum](https://zola.discourse.group/) if you tag [@HugoTrentesaux](https://zola.discourse.group/u/hugotrentesaux/summary)
