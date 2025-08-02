@@ -9,7 +9,7 @@ A Zola theme.
 Add the theme as a git submodule
 
 ```bash
-git submodule add --name seagull https://git.42l.fr/HugoTrentesaux/seagull.git themes/seagull
+git submodule add --name seagull https://git.lacontrevoie.fr/HugoTrentesaux/seagull.git themes/seagull
 ```
 
 Enable the theme in your `config.toml`
