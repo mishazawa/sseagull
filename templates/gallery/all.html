@@ -2,6 +2,14 @@
 
 {% block extrahead %}
 {{ macros::photoswipe_script(gallery=".images")}}
+  {% if section.extra.header_image %}
+    {% set style = 
+      'style=' ~
+      'background-image:url(' ~ section.extra.header_image ~ ');' ~
+      'min-height:30vh;'
+    %}
+    <div class="hero" {{ style }}></div>
+  {% endif %}
 {% endblock extrahead %}
 
 {% block content %}
