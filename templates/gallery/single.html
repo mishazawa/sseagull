@@ -1,7 +1,15 @@
 {% extends "index.html" %}
 
 {% block extrahead %}
-{{ macros::photoswipe_script(gallery=".images")}}
+  {{ macros::photoswipe_script(gallery=".images")}}
+  {% if page.extra.header_image %}
+    {% set style = 
+      'style=' ~
+      'background-image:url(' ~ page.extra.header_image ~ ');' ~
+      'min-height:30vh;'
+    %}
+    <div class="hero" {{ style }}></div>
+  {% endif %}
 {% endblock extrahead %}
 
 {% block content %}
