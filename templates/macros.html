@@ -70,18 +70,39 @@
 {# === image gallery === #}
 {# ===================== #}
 {% macro gallery(images, height=200, single_line=false) %}
-<div class="{% if single_line %}single-line-{% endif %}gallery">
-    <div class="images" {% if single_line %}style="width: {{images | length * 3/2 * height}}px; height: {{height+10}}px;"{% endif %}>
-        {% for img in images %}
-        {% set img_meta = get_image_metadata(path=img) %}
-        <a href="{{img}}"
-        data-pswp-width="{{img_meta.width}}"
-        data-pswp-height="{{img_meta.height}}">
-            <img src="{{ macros::resize_static(path=img, width=height, height=height) }}"/>
-        </a>
-        {% endfor %}
-    </div>
-</div>
+  {% if single_line %}
+    {% set gallery_class = "class=single-line-gallery" %}
+    {% set gallery_height = height + 10 %}
+    {% set_global gallery_width = 0 %}
+    {% for image in images %}
+      {% set img = resize_image(path=image, height=height, op="fit_height") %}
+      {% set_global gallery_width = gallery_width + img.width %}
+    {% endfor %}
+    {% set gallery_style =
+      "style=" ~
+      "width:" ~ gallery_width ~ "px;" ~
+      "height:" ~ gallery_height ~ "px;"
+      %}
+  {% else %}
+    {% set gallery_class = "class=gallery" %}
+    {% set gallery_style = ""  %}
+  {% endif %}
+  <div {{ gallery_class }}>
+    <div class="images" {{ gallery_style }}>
+          {% for img in images %}
+            {% set img_meta = get_image_metadata(path=img) %}
+            <a href="{{img}}"
+              data-pswp-width="{{img_meta.width}}"
+              data-pswp-height="{{img_meta.height}}">
+              <img src="{{
+                macros::resize_static(
+                  path=img,
+                  width=height,
+                  height=height) }}" />
+            </a>
+          {% endfor %}
+      </div>
+  </div>
 {% endmacro gallery %}
 
 {% macro photoswipe_script(gallery="") %}
