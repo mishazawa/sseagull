@@ -1,6 +1,7 @@
 +++
 title = "Blog"
 sort_by = "date"
+extra.header_image = "/img/seagulls.jpg"
 +++
 
 # Blog
