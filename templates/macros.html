@@ -105,7 +105,7 @@
               {% set img_path = img %}
             {% endif %}
             {% set img_meta = get_image_metadata(path=img_path) %}
-            <a href="{{img}}"
+            <a href="{{img_path}}"
               data-pswp-width="{{img_meta.width}}"
               data-pswp-height="{{img_meta.height}}">
               <img src="{{
