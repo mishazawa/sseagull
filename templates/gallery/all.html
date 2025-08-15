@@ -1,7 +1,10 @@
 {% extends "index.html" %}
 
 {% block extrahead %}
-{{ macros::photoswipe_script(gallery=".images")}}
+  {{ macros::photoswipe_script(gallery=".images")}}
+{% endblock extrahead %}
+
+{% block header %}
   {% if section.extra.header_image %}
     {% set style = 
       'style=' ~
@@ -10,7 +13,7 @@
     %}
     <div class="hero" {{ style }}></div>
   {% endif %}
-{% endblock extrahead %}
+{% endblock header %}
 
 {% block content %}
 <main class="page">
