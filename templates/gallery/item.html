@@ -8,5 +8,5 @@
     </div>
 </div>
 {% if page.extra.gallery %}
-{{ macros::gallery(images=page.extra.gallery, single_line=true) }}
+{{<macros.gallery images={page.extra.gallery} single_line={true} />}}
 {% endif %}

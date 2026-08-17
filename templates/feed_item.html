@@ -4,8 +4,8 @@
     {%- if article.extra.thumbnail -%}
     {%- set thumbnail = article.extra.thumbnail -%}
     <img alt="" class="feed-img hidden-s" src="
-    {%- if thumbnail is matching("[.](jpg|png|jpeg)$") -%}
-    {{ macros::resize_static(path=article.extra.thumbnail,height=config.extra.theme.feed_thumb_height) }}
+    {%- if thumbnail is matching(pat="[.](jpg|png|jpeg)$") -%}
+    {{<macros.resize_static path={article.extra.thumbnail} height={config.extra.theme.feed_thumb_height} />}}
     {%- else -%}
     {{ article.extra.thumbnail }}
     {%- endif -%}"/>
@@ -18,10 +18,10 @@
     <div class="feed-tax">
     {%- set tax = article.taxonomies %}
     <span>
-        {% if tax.category %}<span>{{ macros::category(category=tax.category )}}</span>{% endif %}
-        {% if tax.authors %}<span>{{ macros::authors(authors=tax.authors )}}</span>{% endif %}
-        {% if tax.tags %}<span>{{ macros::tags(tags=tax.tags )}}</span>{% endif %}
+        {% if tax.category %}<span>{{<macros.category category={tax.category} />}}</span>{% endif %}
+        {% if tax.authors %}<span>{{<macros.authors authors={tax.authors} />}}</span>{% endif %}
+        {% if tax.tags %}<span>{{<macros.tags tags={tax.tags} />}}</span>{% endif %}
     </span>
-    {% if article.date %}<span class="date">{{ macros::date(date=article.date) }}</span>{% endif %}
+    {% if article.date %}<span class="date">{{<macros.date date={article.date} locale={config.extra.theme.date.locale} format={config.extra.theme.date.format} />}}</span>{% endif %}
     </div>
 </div>

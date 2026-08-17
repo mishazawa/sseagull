@@ -4,7 +4,7 @@
 
 {% block extrahead %}
 {%- if page.extra.gallery -%}
-{{ macros::photoswipe_script(gallery=".images")}}
+{{< macros.photoswipe_script gallery=".images" />}}
 {%- endif -%}
 {% endblock extrahead %}
 
@@ -17,11 +17,11 @@
 
 {% block content %}
 <main class="page">
-    {{ macros::taxonomies(taxonomies=page.taxonomies) }}
-    {{ macros::date(date=page.date)}}
+    {{<macros.taxonomies taxonomies={page.taxonomies} />}}
+    {{<macros.date date={page.date} />}}
 
     {%- if page.extra.gallery -%}
-    {{ macros::replace_gallery(resource=page) | safe }}
+    {{<macros.replace_gallery resource={page} /> | safe }}
     {%- else -%}
     {{ page.content | safe }}
     {%- endif -%}
