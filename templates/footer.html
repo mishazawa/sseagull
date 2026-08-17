@@ -1,7 +1,8 @@
 <footer>
     <div class="social">
         {%- for link in config.extra.social.link -%}
-        <a rel="me" href="{{link.url}}"><div><img alt="{{link.name}}" class="icon" src="{{link.img}}"/> <span>{{link.name}}</span></div></a>
+        {%- if link.img starts_with 'http' -%}{%- set img = link.img -%}{%- else -%}{%- set img = get_url(path=link.img) -%}
+        <a rel="me" href="{{link.url}}"><div><img alt="{{link.name}}" class="icon" src="{{img}}"/> <span>{{link.name}}</span></div></a>
         {% endfor -%}
     </div>
 

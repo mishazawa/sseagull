@@ -53,9 +53,9 @@
     {#--------- the following are included in every page inheriting from index ---------#}
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="generator" content="Zola 0.16"/> 
-    <link rel="stylesheet" type="text/css" href="/combine.css"/>
-    <link rel="stylesheet" type="text/css" href="/custom.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/photoswipe.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ get_url(path='combine.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ get_url(path='custom.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ get_url(path='css/photoswipe.css') }}"/>
 
     {# add canonical url if the website is served at multiple places #}
     {%- if page -%}
@@ -66,13 +66,13 @@
 
     {# -------- the following are only included if argument is given in front matter ---------#}
     {%- if page -%}
-        {%- if page.extra.thumbnail %}<meta property="og:image" content="{{page.extra.thumbnail}}"/>{% endif %}
-        {%- if page.extra.custom_css %}<link rel="stylesheet" type="text/css" href="{{page.extra.custom_css}}"/>{% endif %}
+        {%- if page.extra.thumbnail %}<meta property="og:image" content="{{ get_url(path=page.extra.thumbnail) }}"/>{% endif %}
+        {%- if page.extra.custom_css %}<link rel="stylesheet" type="text/css" href="{{ get_url(path=page.extra.custom_css) }}"/>{% endif %}
     {%- elif section -%}
         {%- if section.extra.thumbnail %}<meta property="og:image" content="{{section.extra.thumbnail}}"/>{% endif %}
-        {%- if section.extra.custom_css %}<link rel="stylesheet" type="text/css" href="{{section.extra.custom_css}}"/>{% endif %}
+        {%- if section.extra.custom_css %}<link rel="stylesheet" type="text/css" href="{{ get_url(path=section.extra.custom_css) }}"/>{% endif %}
     {%- else -%}
-        <meta property="og:image" content="{{config.extra.logo}}"/>
+        <meta property="og:image" content="{{ get_url(path=config.extra.logo) }}"/>
     {%- endif %}
 </head>
 

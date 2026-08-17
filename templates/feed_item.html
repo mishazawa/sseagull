@@ -7,7 +7,7 @@
     {%- if thumbnail is matching("[.](jpg|png|jpeg)$") -%}
     {{ macros::resize_static(path=article.extra.thumbnail,height=config.extra.theme.feed_thumb_height) }}
     {%- else -%}
-    {{ article.extra.thumbnail }}
+    {{ get_url(path=article.extra.thumbnail) }}
     {%- endif -%}"/>
     {%- endif %}
     <div class="feed-desc">

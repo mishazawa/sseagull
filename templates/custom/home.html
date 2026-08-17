@@ -4,14 +4,14 @@
 <meta name="keywords" content="Seagull, Zola, Theme">{% endblock keywords %}
 
 {% block header %}
-<div class="hero hero-home col center" style="background-image: url(/img/seagulls.jpg); min-height: 60vh;">
+<div class="hero hero-home col center" style="background-image: url({{ get_url(path='img/seagulls.jpg') }}); min-height: 60vh;">
     <h1>Seagull demo website</h1>
 </div>
 {% endblock header %}
 
 {% block extrahead %}
-<link rel="stylesheet" type="text/css" href="/css/mastodon-timeline.css">
-<script src="/javascript/mastodon-timeline.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ get_url(path='css/mastodon-timeline.css') }}">
+<script src="{{ get_url(path='javascript/mastodon-timeline.js') }}"></script>
 {% endblock extrahead %}
 
 {% block content %}
@@ -19,7 +19,7 @@
     <div class="page">
 
         <div class="textimage" style="min-height: 30vh;">
-            <img alt="logo" src="/img/gull.svg" style="max-width: 200px;" />
+            <img alt="logo" src="{{ get_url(path='img/gull.svg') }}" style="max-width: 200px;" />
             <div class="quote">
                 <q>Seagull is my most complete Zola theme</q>
                 <p>The author</p>
@@ -34,10 +34,10 @@
         </div>
     </div>
 
-    <div class="hero" style="background-image:url(/img/seagulls.jpg);">
+    <div class="hero" style="background-image:url({{ get_url(path='img/seagulls.jpg') }});">
         <div class="col center" style="background-color: rgba(0, 0, 0, 0.5); padding: 2em; color: white;">
             <div style="max-width: 800px; background-color: rgba(222, 245, 255, 1); border-radius: 100%;">
-                <img src="/img/gull.svg"/>
+                <img src="{{ get_url(path='img/gull.svg') }}"/>
             </div>
             <h3 style="margin-bottom: 0;">The seagull is chasing</h3>
             <h3>she likes fish a lot</h3>
@@ -81,7 +81,7 @@
 
             <h4>Gull picture</h4>
             <div class="row center">
-                <img alt="map" src="/img/gull.svg" style="width: min(95vw, 600px);" />
+                <img alt="map" src="{{ get_url(path='img/gull.svg') }}" style="width: min(95vw, 600px);" />
             </div>
         </div>
 
