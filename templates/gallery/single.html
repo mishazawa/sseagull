@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block extrahead %}
-  {{ macros::photoswipe_script(gallery=".images")}}
+  {{<macros.photoswipe_script gallery=".images" />}}
 {% endblock extrahead %}
 
 {% block header %}

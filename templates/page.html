@@ -9,6 +9,6 @@
 
 {% block content %}
 <main class="page">
-    {{ macros::replace_toc(resource=page) | safe }}
+    {{<macros.replace_toc resource="{{page}}"/> | safe }}
 </main>
 {% endblock content %}

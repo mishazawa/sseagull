@@ -1,6 +1,3 @@
-{% import "macros.html" as macros %}
-{% import "icon_macros.html" as i %}
-
 <!doctype html>
 <html lang="fr">
 <head>
@@ -30,10 +27,10 @@
     {#- keyword helps some search engines knowing what the page is about -#}
     {%- block keywords %}
         {%- if page -%}
-            {% if page.taxonomies.tags %}<meta name="keywords" content="
+            {% if page|get(key="taxonomies", default={})|get(key="tags", default=None) %}<meta name="keywords" content="
             {%- for tag in page.taxonomies.tags %}{{tag}},{% endfor %}">{% endif %}
         {%- elif section -%}
-            {% if section.taxonomies.tags %}<meta name="keywords" content="
+            {% if section|get(key="taxonomies", default={})|get(key="tags", default=None) %}<meta name="keywords" content="
             {%- for tag in section.taxonomies.tags %}{{tag}},{% endfor %}">{% endif %}
         {%- else -%}
             <meta name="keywords" content="Albatros, Zola, theme"/>

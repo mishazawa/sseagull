@@ -1,75 +1,71 @@
-{% import "icon_macros.html" as i %}
-
 {# ================== #}
 {# === taxonomies === #}
 {# ================== #}
 
 {# === tags === #}
-{%- macro tags(tags) -%}
+{%- component macros.tags(tags) -%}
 <span class="tags">
     {%- for tag in tags -%}
     {%- set url = get_taxonomy_url(kind="tags", name=tag) -%}
     <a class="tag" href="{{url}}">{{ tag }}</a>
     {%- endfor -%}
 </span>
-{%- endmacro -%}
+{%- endcomponent macros.tags -%}
 
 {# === author === #}
-{%- macro authors(authors) -%}
+{%- component macros.authors(authors) -%}
 <span class="authors">
     {%- for author in authors -%}
     {%- set url = get_taxonomy_url(kind="authors", name=author) -%}
-    <a class="author" href="{{url}}">{{ i::user(size="16px") }}{{ author }}</a>{% if not loop.last %}, {% endif %}
+    <a class="author" href="{{url}}">{{<i.user size="16px" />}}{{ author }}</a>{% if not loop.last %}, {% endif %}
     {%- endfor %}
 </span>
-{%- endmacro -%}
+{%- endcomponent macros.authors -%}
 
 {# === translations === #}
-{% macro translations(resource) %}
+{% component macros.translations(resource) %}
 {% if resource.extra.translations %}
     {% for ltag,lurl in resource.extra.translations %}
         {% set lcfg = config.extra.translations[ltag] %}
         <a href="{{lcfg.base_url}}{{lurl}}">{{lcfg.flag}}</a>
     {% endfor %}
 {% endif %}
-{%- endmacro %}
+{%- endcomponent macros.translations %}
 
 {# === category === #}
-{%- macro category(category) -%}
+{%- component macros.category(category) -%}
 <span class="category">
     {%- for cat in category -%}
     {%- set url = get_taxonomy_url(kind="category", name=cat) -%}
-    <a class="cat" href="{{url}}">{{ i::folder(size="16px") }}{{ cat }}</a>
+    <a class="cat" href="{{url}}">{{< i.folder size="16px" />}}{{ cat }}</a>
     {%- endfor -%}
 </span>
-{%- endmacro -%}
+{%- endcomponent macros.category -%}
 
 {# === taxonomies === #}
-{%- macro taxonomies(taxonomies) -%}
-{%- if taxonomies.category -%}{{ macros::category(category=taxonomies.category )}}{%- endif -%}
-{%- if taxonomies.authors -%}{{ macros::authors(authors=taxonomies.authors )}}{%- endif -%}
-{%- if taxonomies.tags -%}{{ macros::tags(tags=taxonomies.tags )}}{%- endif -%}
-{%- endmacro -%}
+{%- component macros.taxonomies(taxonomies) -%}
+{%- if taxonomies.category -%}{{< macros.category category={taxonomies.category} />}}{%- endif -%}
+{%- if taxonomies.authors -%}{{< macros.authors authors={taxonomies.authors} />}}{%- endif -%}
+{%- if taxonomies.tags -%}{{< macros.tags tags={taxonomies.tags} />}}{%- endif -%}
+{%- endcomponent macros.taxonomies -%}
 
-{%- macro date(date, icon=true) -%}
-{%- set locale = config.extra.theme.date.locale -%}
-{%- set format = config.extra.theme.date.format -%}
-{%- if date -%}{% if icon %}{{i::clock(size="16px")}}{% endif %}{{ date | date(format=format, locale=locale) }}{%- endif -%}
-{%- endmacro -%}
+{%- component macros.date(date, icon: bool = true, locale: string, format: string) -%}
+{%- if date -%}{% if icon %}{{<i.clock size="16px" />}}{% endif %}{{ date | date(format=format, locale=locale) }}{%- endif -%}
+{%- endcomponent macros.date -%}
 
 {# =========================== #}
 {# === resize static image === #}
 {# =========================== #}
-{% macro resize_static(path, width=160, height=160, op="fit_height") %}
+{% component macros.resize_static(path, width=160, height=160, op="fit_height") %}
 {%- set resized = resize_image(path="../static" ~ path, width=width, height=height, op=op, quality=85) -%}
 {{ resized.url }}
-{%- endmacro resize_static %}
+{%- endcomponent macros.resize_static %}
 
 
 {# ===================== #}
 {# === image gallery === #}
 {# ===================== #}
-{% macro gallery(images, height=200, single_line=false) %}
+{% component macros.gallery(images, height=200, single_line=false) %}
   {% if single_line %}
     {% set gallery_class = "class=single-line-gallery" %}
     {% set gallery_height = height + 10 %}
@@ -108,11 +104,7 @@
             <a href="{{img_path}}"
               data-pswp-width="{{img_meta.width}}"
               data-pswp-height="{{img_meta.height}}">
-              <img src="{{
-                macros::resize_static(
-                  path=img_path,
-                  width=height,
-                  height=height) }}"
+              <img src="{{<macros.resize_static path={img_path} width={height} height={height} />}}"
                   {% if img.title %}
                     title="{{img.title}}"
                   {% endif %}
@@ -121,9 +113,9 @@
           {% endfor %}
       </div>
   </div>
-{% endmacro gallery %}
+{% endcomponent macros.gallery %}
 
-{% macro photoswipe_script(gallery="") %}
+{% component macros.photoswipe_script(gallery="") %}
 <script type="module">
     import PhotoSwipeLightbox from '/javascript/photoswipe-lightbox.esm.js';
     const lightbox = new PhotoSwipeLightbox({
@@ -133,22 +125,22 @@
     });
     lightbox.init();
 </script>
-{% endmacro photoswipe_script %}
+{% endcomponent macros.photoswipe_script %}
 
 {# === replace gallery === #}
-{% macro replace_gallery(resource) %}
+{% component macros.replace_gallery(resource) %}
 	{%- set content = resource.content %}
-	{%- if content is containing("[GALLERY]") %}
-		{%- set content = content | replace(from="[GALLERY]", to=self::gallery(images=resource.extra.gallery)) %}
+	{%- if content is containing(pat="[GALLERY]") %}
+		{%- set content = content | replace(from="[GALLERY]", to=<macros.gallery images={resource.extra.gallery} />) %}
 	{%- endif -%}
 	{{ content | safe }}
-{%- endmacro %}
+{%- endcomponent macros.replace_gallery %}
 
 
 {# ========================= #}
 {# === table of contents === #}
 {# ========================= #}
-{% macro toc(toc, level, depth) %}
+{% component macros.toc(toc, level: integer, depth) %}
 {%- if level == 1 %}
 <div class="toc">
 <h3>{{config.extra.theme.toc_title}}</h3>
@@ -161,7 +153,7 @@
     <li><a href="{{ h.permalink | safe }}">{{ h.title }}</a>
         {%- endif %}
         {% if h.children and level <= depth -%}
-            {{ self::toc(toc=h.children, level=level+1, depth=depth, heading=false) }}
+            {{<macros.toc toc={h.children} level={level+1} depth={depth} />}}
         {%- endif %}
     {%- if level != 1 -%}
     </li>
@@ -173,13 +165,13 @@
 {%- if level == 1 %}
 </div>
 {%- endif %}
-{%- endmacro %}
+{%- endcomponent macros.toc %}
 
 {# === replace toc === #}
-{% macro replace_toc(resource) %}
+{% component macros.replace_toc(resource) %}
 	{%- set content = resource.content %}
-	{%- if content is containing("[TOC]") %}
-		{%- set content = content | replace(from="[TOC]", to=self::toc(toc=resource.toc, level=1, depth=resource.extra.toc_depth | default(value=6))) %}
+	{%- if content is containing(pat="[TOC]") %}
+		{%- set content = content | replace(from="[TOC]", to=<macros.toc toc={resource.toc} level={1} depth={resource.extra.toc_depth | default(value=6)} />) %}
 	{%- endif -%}
 	{{ content | safe }}
-{%- endmacro %}
+{%- endcomponent macros.replace_toc %}
