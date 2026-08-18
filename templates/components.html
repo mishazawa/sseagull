@@ -1,15 +1,11 @@
 {#
-    note shortcode with icon and border
+    note component with icon and border
     display: icon / block / both
     type: neutral / ok / info / warning / error
     size: small / medium / large
 #}
 
-{# define defaults #}
-{% if not display %}{% set display="both" %}{% endif %}
-{% if not type %}{% set type="neutral" %}{% endif %}
-{% if not size %}{% set size="small" %}{% endif %}
-
+{% component note(display: string = "both", type: string = "neutral", size: string = "small", markdown: bool = false) %}
 <div class="note
 {%- if display == 'icon' %} note-icon note-icon-{{size}} note-icon-{{type}}
 {%- elif display == 'block' %} note-block note-{{type}}
@@ -19,3 +15,4 @@
 {% else %}{{ body | safe }}
 {% endif %}
 </div>
+{% endcomponent note %}

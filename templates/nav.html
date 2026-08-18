@@ -10,7 +10,7 @@
       {%- if not s.extra.hide -%}
       <div class="dropdown">
         <a href="{{s.permalink}}" class="dropper 
-          {%- if current_path %}{% if current_path is starting_with(path=s.path) %} active{% endif %}{% endif -%}">{{s.title | safe}} 
+          {%- if current_path %}{% if current_path is starting_with(pat=s.path) %} active{% endif %}{% endif -%}">{{s.title | safe}} 
           {%- if s.extra.no_list_pages %}{# nothing #}{% else %}{{<i.caret_down color="white" />}}{% endif %}</a>
         <div class="dropdown-content">
           {%- for sec in s.subsections -%}

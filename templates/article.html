@@ -18,7 +18,7 @@
 {% block content %}
 <main class="page">
     {{<macros.taxonomies taxonomies={page.taxonomies} />}}
-    {{<macros.date date={page.date} />}}
+    {{<macros.date date={page.date} locale={config.extra.theme.date.locale} format={config.extra.theme.date.format} />}}
 
     {%- if page.extra.gallery -%}
     {{<macros.replace_gallery resource={page} /> | safe }}

@@ -6,7 +6,7 @@ description = "A Zola theme."
 license = "AGPL"
 homepage = "https://git.lacontrevoie.fr/HugoTrentesaux/seagull"
 # The minimum version of Zola required
-min_version = "0.17.0"
+min_version = "0.23.0"
 # An optional live demo URL
 demo = "https://seagull.coinduf.eu/"
 

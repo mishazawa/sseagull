@@ -12,8 +12,8 @@ width="{{size}}" height="{{size}}"
 xmlns="http://www.w3.org/2000/svg"
 {%- endcomponent i.xmlns %} 
 
-{% component i.svg(size="24px", svg_body) -%}
+{% component i.svg(size="24px") -%}
 <svg {{ <i.printsize size={size} /> }} {{<i.aria /> }} {{<i.xmlns />}}>
-    {{svg_body}}
+    {{body}}
 </svg>
-{%- endcomponent i.svg %} 
+{%- endcomponent i.svg %}

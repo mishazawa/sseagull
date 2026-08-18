@@ -6,7 +6,7 @@
 {%- component macros.tags(tags) -%}
 <span class="tags">
     {%- for tag in tags -%}
-    {%- set url = get_taxonomy_url(kind="tags", name=tag) -%}
+    {%- set url = get_taxonomy_url(kind="tags", term=tag) -%}
     <a class="tag" href="{{url}}">{{ tag }}</a>
     {%- endfor -%}
 </span>
@@ -16,14 +16,14 @@
 {%- component macros.authors(authors) -%}
 <span class="authors">
     {%- for author in authors -%}
-    {%- set url = get_taxonomy_url(kind="authors", name=author) -%}
+    {%- set url = get_taxonomy_url(kind="authors", term=author) -%}
     <a class="author" href="{{url}}">{{<i.user size="16px" />}}{{ author }}</a>{% if not loop.last %}, {% endif %}
     {%- endfor %}
 </span>
 {%- endcomponent macros.authors -%}
 
 {# === translations === #}
-{% component macros.translations(resource) %}
+{% component macros.translations(resource, config) %}
 {% if resource.extra.translations %}
     {% for ltag,lurl in resource.extra.translations %}
         {% set lcfg = config.extra.translations[ltag] %}
@@ -36,7 +36,7 @@
 {%- component macros.category(category) -%}
 <span class="category">
     {%- for cat in category -%}
-    {%- set url = get_taxonomy_url(kind="category", name=cat) -%}
+    {%- set url = get_taxonomy_url(kind="category", term=cat) -%}
     <a class="cat" href="{{url}}">{{< i.folder size="16px" />}}{{ cat }}</a>
     {%- endfor -%}
 </span>
@@ -140,7 +140,7 @@
 {# ========================= #}
 {# === table of contents === #}
 {# ========================= #}
-{% component macros.toc(toc, level: integer, depth) %}
+{% component macros.toc(toc, level: integer, depth, config) %}
 {%- if level == 1 %}
 <div class="toc">
 <h3>{{config.extra.theme.toc_title}}</h3>
@@ -153,7 +153,7 @@
     <li><a href="{{ h.permalink | safe }}">{{ h.title }}</a>
         {%- endif %}
         {% if h.children and level <= depth -%}
-            {{<macros.toc toc={h.children} level={level+1} depth={depth} />}}
+            {{<macros.toc toc={h.children} level={level+1} depth={depth} config={config} />}}
         {%- endif %}
     {%- if level != 1 -%}
     </li>
@@ -168,10 +168,10 @@
 {%- endcomponent macros.toc %}
 
 {# === replace toc === #}
-{% component macros.replace_toc(resource) %}
+{% component macros.replace_toc(resource, config) %}
 	{%- set content = resource.content %}
 	{%- if content is containing(pat="[TOC]") %}
-		{%- set content = content | replace(from="[TOC]", to=<macros.toc toc={resource.toc} level={1} depth={resource.extra.toc_depth | default(value=6)} />) %}
+		{%- set content = content | replace(from="[TOC]", to=<macros.toc toc={resource.toc} level={1} depth={resource.extra.toc_depth | default(value=6)} config={config} />) %}
 	{%- endif -%}
 	{{ content | safe }}
 {%- endcomponent macros.replace_toc %}
