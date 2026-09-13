@@ -49,8 +49,14 @@
 {%- if taxonomies.tags -%}{{< macros.tags tags={taxonomies.tags} />}}{%- endif -%}
 {%- endcomponent macros.taxonomies -%}
 
-{%- component macros.date(date, icon: bool = true, locale: string, format: string) -%}
-{%- if date -%}{% if icon %}{{<i.clock size="16px" />}}{% endif %}{{ date | date(format=format, locale=locale) }}{%- endif -%}
+{# === formatted date component === #}
+{%- component macros.date(date, icon: bool = true, locale: string = "", format: string = "%Y-%m-%d") -%}
+{%- if date -%}
+{%- if icon %}{{<i.clock size="16px" />}}{% endif -%}
+{%- if locale -%}{{ date | date(format=format, locale=locale) }}
+{%- else -%}{{ date | date(format=format) }}
+{%- endif -%}
+{%- endif -%}
 {%- endcomponent macros.date -%}
 
 {# =========================== #}

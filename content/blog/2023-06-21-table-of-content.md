@@ -20,17 +20,17 @@ Then insert your table of content below:
 
 Section
 
-{% note(type="info") %}
+{% <note type="info"> %}
 Blue info box with an icon
-{% end %}
+{% </note> %}
 
 ## Other subtitle
 
 Content
 
-{% note(type="warning", size="large", markdown=true) %}
+{% <note type="warning" size="large" markdown={true}> %}
 Yellow warning box with a **large** icon and *Markdown* content.  
 Useful for multiline info box.  
 Like this  
 ...
-{% end %}
+{% </note> %}

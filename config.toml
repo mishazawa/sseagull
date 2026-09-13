@@ -11,19 +11,12 @@ build_search_index = false
 generate_feeds = true
 feed_filenames = ["rss.xml"]
 
-taxonomies = [
-    {name = "authors"},
-    {name = "tags"},
-    {name = "category"},
-    ]
+taxonomies = [{ name = "authors" }, { name = "tags" }, { name = "category" }]
 
 default_language = "fr"
 
-
-[markdown]
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
-highlight_code = false
+[markdown.highlighting]
+theme = "github-light"
 
 [extra]
 # Put all your custom variables here
@@ -49,12 +42,7 @@ links = [
 
 # This configures the footer menu
 [extra.footer]
-links = [
-    "_index.md",
-    "about.md",
-    "contact.md",
-    "contribute.md",
-]
+links = ["_index.md", "about.md", "contact.md", "contribute.md"]
 
 # the following links will appear in the footer
 [[extra.social.link]]
@@ -80,5 +68,7 @@ toc_title = "Table of content"
 feed_thumb_height = 240
 
 [extra.theme.date]
-format="%Y-%m-%d"
-locale="en_US"
+# Sans `locale`, `format` reste du strftime. Une date ISO n'a pas besoin de
+# locale — on la laisse vide plutôt que d'imposer une langue au thème.
+format = "%Y-%m-%d"
+locale = ""
