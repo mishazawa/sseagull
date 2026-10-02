@@ -1,0 +1,12 @@
+<div class="titletextimage col center">
+    <h2><a href="{{ section.permalink }}" style="color: inherit;">{{ section.title | safe}}</a></h2>
+    <div class="col center">
+        <img src="{{section.extra.image}}" style="height:min(95vw,300px)"/>
+        <div style="max-width: 50em;">
+            {{ section.content | safe }}
+        </div>
+    </div>
+</div>
+{% if section.extra.gallery %}
+{{<macros.gallery images={section.extra.gallery} single_line={true} />}}
+{% endif %}

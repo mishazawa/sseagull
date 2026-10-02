@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block extrahead %}
+  {{<macros.photoswipe_script gallery=".images" />}}
+{% endblock extrahead %}
+
+
+{% block content %}
+<main class="page">
+    <h1 class="center">{{ section.title | safe}}</h1>
+
+    {% for link in section.subsections %}
+    {%- set s = get_section(path=link) -%}
+
+        <a href="{{s.permalink}}">
+            {{s.title}}
+            <img src="{{s.extra.image}}"/>
+        </a>
+    {% endfor %}
+</main>
+{% endblock content %}

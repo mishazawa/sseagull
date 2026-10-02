@@ -1,18 +1,13 @@
 {% extends "index.html" %}
 
 {% block keywords %}
-<meta name="keywords" content="Seagull, Zola, Theme">{% endblock keywords %}
+<meta name="keywords" content="aaa">
+{% endblock keywords %}
 
-{% block header %}
-<div class="hero hero-home col center" style="background-image: url({{ get_url(path='img/seagulls.jpg') }}); min-height: 60vh;">
-    <h1>Seagull demo website</h1>
-</div>
-{% endblock header %}
+{% block title %}
+<title>{{ trans(key="ngo", lang=lang) }} «{{ trans(key="name", lang=lang) }}»</title>
+{% endblock title %}
 
-{% block extrahead %}
-<link rel="stylesheet" type="text/css" href="{{ get_url(path='css/mastodon-timeline.css') }}">
-<script src="{{ get_url(path='javascript/mastodon-timeline.js') }}"></script>
-{% endblock extrahead %}
 
 {% block content %}
 <main>
@@ -70,20 +65,7 @@
     </div>
 
     <div class="row center" style="align-items: start;">
-        <div class="col center" style="max-width: min(95vw, 900px);">
-            <h4>Last blog posts</h4>
-            {% set posts = get_section(path="blog/_index.md") -%}
-            <ul>
-                {%- for article in posts.pages[0:config.extra.homepage.n_articles] %}
-                <li><a href="{{article.permalink}}">{{ article.title | safe }}</a> {{<macros.date date={article.date} icon={false} locale={config.extra.theme.date.locale} format={config.extra.theme.date.format} />}}</li>
-                {%- endfor %}
-            </ul>
 
-            <h4>Gull picture</h4>
-            <div class="row center">
-                <img alt="map" src="{{ get_url(path='img/gull.svg') }}" style="width: min(95vw, 600px);" />
-            </div>
-        </div>
 
         <div class="col" style="max-width: min(95vw, 500px);">
             <!-- script loading mastodon timeline -->

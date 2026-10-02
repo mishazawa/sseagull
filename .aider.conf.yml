@@ -1,0 +1,9 @@
+read:
+  - CONVENTIONS.md
+  - AGENTS.md
+  - sass/_variables.sass
+
+
+model: gemini/gemini-3.5-flash-lite
+weak-model: gemini/gemini-3.1-flash-lite
+auto-commits: false
