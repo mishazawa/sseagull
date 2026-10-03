@@ -9,13 +9,18 @@
 <main class="page">
     <h1 class="center">{{ section.title | safe}}</h1>
 
+    <div class="gallery_list-wrapper">
     {% for link in section.subsections %}
     {%- set s = get_section(path=link) -%}
+        <div class="gallery_list-item">
 
-        <a href="{{s.permalink}}">
-            {{s.title}}
-            <img src="{{s.extra.image}}"/>
-        </a>
-    {% endfor %}
+            <a href="{{s.permalink}}">
+                <img src="{{get_url(path=s.colocated_path ~ s.extra.image)}}"/>
+                {{s.title}}
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
 </main>
 {% endblock content %}

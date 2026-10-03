@@ -1,12 +1,20 @@
-<div class="titletextimage col center">
-    <h2><a href="{{ section.permalink }}" style="color: inherit;">{{ section.title | safe}}</a></h2>
-    <div class="col center">
-        <img src="{{section.extra.image}}" style="height:min(95vw,300px)"/>
-        <div style="max-width: 50em;">
-            {{ section.content | safe }}
-        </div>
-    </div>
+<h2>
+    <a href="{{ section.permalink }}" style="color: inherit;">{{ section.title | safe}}</a>
+</h2>
+
+<div class="dog_description">
+
+    
+    {{ section.content | safe }}
+    
 </div>
+
 {% if section.extra.gallery %}
-{{<macros.gallery images={section.extra.gallery} single_line={true} />}}
+<h3>
+    {{ trans(key="gallery", lang=lang) }}
+</h3>
+{{<macros.gallery
+    images={section.extra.gallery}
+    height={500}
+    colocated_path={section.colocated_path} />}}
 {% endif %}

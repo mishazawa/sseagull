@@ -6,15 +6,28 @@ nav
     background-color: $color-main
     display: flex
     flex-direction: row
-    flex-wrap: wrap
-    justify-content: center
-    align-items: stretch
+    justify-content: space-between
+    align-items: center
+    padding: 2em
+
+
+
+    .logo
+        display: flex
+        flex-direction: row
+        justify-content: center
+        align-items: center
+
+        img
+            max-width: 64px
+
 
     .links
         display: flex
         flex-direction: row
-        border-radius: 5px
+        border-radius: 15px
         border: 0 solid #000
+        overflow: hidden
 
         // links, groups of links, and links inside 
         > a.item, > span, > span a.item
@@ -25,13 +38,14 @@ nav
             min-height: 3em
             padding: 0 1em
         a
-            color: white
             text-decoration: none
-        a.active
-            background-color: $color-nav-link-active
-        a:hover
             background-color: $color-nav-link-hover
             color: white
+        a.active
+        
+        a:hover
+            background-color: white
+            color: $font-color
             text-decoration: none
         img
             height: 1.2em

@@ -1,15 +1,55 @@
 @import "_variables"
 @import "_misc"
 
-.hero-home
-    h1
-        font-size: 5em
-        color: white
-        text-shadow: 3px 3px $color-main
-
 body
     font-size: 20px
+    hr
+        width: 100%
+        border: none
+        border-top: 1px solid $color-nav-link-active
 
-.feed-block
-    .feed-img
-        flex: 2
+
+.collage, .promo
+    min-height: 30vh
+    padding: 2em 0
+
+    img
+        width: 100%
+
+.odd
+    width: 100%
+    padding: 2em 0
+
+:root
+  --gallery-gap: 1.5em
+  --gallery-items-per-row: 1
+
+
+
+.gallery_list-wrapper
+    justify-content: start
+    display: flex
+    flex-wrap: wrap
+    gap: var(--gallery-gap)
+
+.gallery_list-item
+    flex: 0 0 calc((100% - (var(--gallery-gap) * (var(--gallery-items-per-row) - 1))) / var(--gallery-items-per-row))
+
+    img
+        width: 100%
+        object-fit:cover
+
+// large screen
+@media (min-width: $breakpoint-medium)
+    .gallery_list-item, .gallery-image
+        --gallery-items-per-row: 3
+
+
+// medium screen
+@media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium)
+    .gallery_list-item, .gallery-image
+        --gallery-items-per-row: 2
+
+
+.dog_description
+    padding: 1em 0

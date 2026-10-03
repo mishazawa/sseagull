@@ -1,13 +1,13 @@
 <nav class="">
     <div class="logo">
-      // logo
+      <img src="{{get_url(path='logo.png')}}">
     </div>
     <div class="links">
 
       {%- for link in config.extra.nav.links %}
       {%- set s = get_section(path=link) -%}
       {%- if not s.extra.hide -%}
-      <a href="{{s.permalink}}" class="item {% if current_path %}{% if current_path == "/" %} active{% endif %}{% endif %}">
+      <a href="{{s.permalink}}" class="item">
         <div>{{s.title}}</div>
       </a>
       {%- endif -%}

@@ -63,7 +63,7 @@
 {# === resize static image === #}
 {# =========================== #}
 {% component macros.resize_static(path, width=160, height=160, op="fit_height") %}
-{%- set resized = resize_image(path="../static" ~ path, width=width, height=height, op=op, quality=85) -%}
+{%- set resized = resize_image(path=path, width=width, height=height, op=op, quality=85) -%}
 {{ resized.url }}
 {%- endcomponent macros.resize_static %}
 
@@ -71,51 +71,31 @@
 {# ===================== #}
 {# === image gallery === #}
 {# ===================== #}
-{% component macros.gallery(images, height=200, single_line=false) %}
-  {% if single_line %}
-    {% set gallery_class = "class=single-line-gallery" %}
-    {% set gallery_height = height + 10 %}
-    {% set_global gallery_width = 0 %}
-    {% for img in images %}
-      {% if img.path %}
-        {% set img_path = img.path %}
-      {% else %}
-        {% set img_path = img %}
-      {% endif %}
-      {% set img = 
-        resize_image(
-          path=img_path,
-          height=height,
-          op="fit_height") %}
-      {% set_global gallery_width = gallery_width + img.width %}
-    {% endfor %}
-    {% set gallery_style =
-      "style=" ~
-      "width:" ~ gallery_width ~ "px;" ~
-      "height:" ~ gallery_height ~ "px;"
-      %}
-  {% else %}
-    {% set gallery_class = "class=gallery" %}
-    {% set gallery_style = ""  %}
-  {% endif %}
+{% component macros.gallery(images, height=200, colocated_path="/") %}
+  {% set gallery_class = "class=gallery" %}
+  {% set gallery_style = ""  %}
   <div {{ gallery_class }}>
     <div class="images" {{ gallery_style }}>
           {% for img in images %}
             {% if img.path %}
-              {% set img_path = img.path %}
+              {% set just_img_path = img.path %}
+              {% set img_path = colocated_path ~ img.path %}
             {% else %}
-              {% set img_path = img %}
+              {% set just_img_path = img %}
+              {% set img_path = colocated_path ~ img %}
             {% endif %}
             {% set img_meta = get_image_metadata(path=img_path) %}
-            <a href="{{img_path}}"
-              data-pswp-width="{{img_meta.width}}"
-              data-pswp-height="{{img_meta.height}}">
-              <img src="{{<macros.resize_static path={img_path} width={height} height={height} />}}"
-                  {% if img.title %}
+            <div class="gallery-image">
+              <a href="{{just_img_path}}"
+                data-pswp-width="{{img_meta.width}}"
+                data-pswp-height="{{img_meta.height}}">
+                    <img src="{{<macros.resize_static path={img_path} width={height} height={height} />}}"
+                    {% if img.title %}
                     title="{{img.title}}"
-                  {% endif %}
-                  />
-            </a>
+                    {% endif %}
+                    />
+                </a>
+              </div>
           {% endfor %}
       </div>
   </div>
@@ -123,6 +103,7 @@
 
 {% component macros.photoswipe_script(gallery="") %}
 <script type="module">
+    console.log('asdasd {{gallery}}')
     import PhotoSwipeLightbox from '/javascript/photoswipe-lightbox.esm.js';
     const lightbox = new PhotoSwipeLightbox({
         gallery: '{{gallery}}',
