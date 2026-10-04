@@ -1,11 +1,14 @@
 <nav class="nav">
     <div class="logo">
       <a href="/" class="item">
+        
         <span>
-          <img src="{{get_url(path='logo.png')}}">
+          {%- set logo = resize_image(path='logo.png', height=128, op="fit_height", quality=85) -%}
+          <img src="{{logo.url}}">
         </span>
         <span class="title">
-          <img src="{{get_url(path='title.png')}}">
+          {%- set title = resize_image(path='title.png', height=128, op="fit_height", quality=85) -%}
+          <img src="{{title.url}}">
         </span>
       </a>
     </div>
