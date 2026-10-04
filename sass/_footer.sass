@@ -1,14 +1,29 @@
 footer
-    background-color: $color-main
-    color: $color-white-text
+    background-color: $custom-color-3
+    color: $custom-color-5
     padding: 2em 3em
     display: flex
     flex-wrap: wrap
     justify-content: space-around
-    align-items: center 
+    align-items: start
     a
-        color: $color-white-link
+        color: $custom-color-5
     a:hover
         color: $color-white-link
     > div
         padding: 1em
+
+
+    .social
+        flex: 1
+    .navigation
+        flex: 1
+    .contact
+        flex: 2
+
+    .social, .navigation, .contact
+        display: flex
+        flex-direction: column
+        gap: 1rem
+
+    
