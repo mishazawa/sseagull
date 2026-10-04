@@ -15,7 +15,9 @@
         <div class="gallery_list-item">
 
             <a href="{{s.permalink}}">
-                <img src="{{get_url(path=s.colocated_path ~ s.extra.image)}}"/>
+                {%- set resized = resize_image(path=s.colocated_path ~ s.extra.image, height=512, op="fit_height", quality=85) -%}
+
+                <img src="{{resized.url}}"/>
                 {{s.title}}
             </a>
         </div>
