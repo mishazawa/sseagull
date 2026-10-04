@@ -1,16 +1,42 @@
-<nav class="">
+<nav class="nav">
     <div class="logo">
-      <img src="{{get_url(path='logo.png')}}">
+      <a href="/" class="item">
+        <img src="{{get_url(path='logo.png')}}">
+      </a>
     </div>
     <div class="links">
-
-      {%- for link in config.extra.nav.links %}
-      {%- set s = get_section(path=link) -%}
-      {%- if not s.extra.hide -%}
-      <a href="{{s.permalink}}" class="item">
-        <div>{{s.title}}</div>
+        {%- for link in config.extra.nav.links %}
+        {%- set s = get_section(path=link) -%}
+        {%- if not s.extra.hide -%}
+        <a href="{{s.permalink}}" class="item">
+          <div>{{s.title}}</div>
+        </a>
+        {%- endif -%}
+        {% endfor %}
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <span>&#9776;</span>
       </a>
-      {%- endif -%}
-      {% endfor %}
     </div>
+
+    <div id="links" class="links_hidden">
+        {%- for link in config.extra.nav.links %}
+        {%- set s = get_section(path=link) -%}
+        {%- if not s.extra.hide -%}
+        <a href="{{s.permalink}}" class="item">
+          <div>{{s.title}}</div>
+        </a>
+        {%- endif -%}
+        {% endfor %}
+    </div>
+
+
+    <script>
+      var elem = document.getElementById("links");
+      var open = false;
+
+      function myFunction () {
+        open = !open;
+        elem.classList.toggle("open_nav", open);
+      }
+    </script>
 </nav>

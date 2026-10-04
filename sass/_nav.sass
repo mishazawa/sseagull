@@ -5,6 +5,7 @@ nav
     color: white
     background-color: $color-main
     display: flex
+    flex-wrap: wrap
     flex-direction: row
     justify-content: space-between
     align-items: center
@@ -25,12 +26,13 @@ nav
     .links
         display: flex
         flex-direction: row
+
         border-radius: 15px
         border: 0 solid #000
         overflow: hidden
 
         // links, groups of links, and links inside 
-        > a.item, > span, > span a.item
+        a.item, span, span a.item
             display: flex
             flex-wrap: wrap
             align-items: center
@@ -56,3 +58,61 @@ nav
             position: absolute
             right: 0
             min-width: 8.5em
+
+
+
+.links_hidden
+    position: absolute
+    right: 3rem
+    top: 7rem
+    background-color: $color-nav-link-hover
+
+    display: flex
+    flex-wrap: wrap
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    
+    border-radius: 15px
+    border: 0 solid #000
+    overflow: hidden
+
+    a 
+        min-height: 3em
+        padding: 0 1em
+        display: flex
+        align-items: center
+
+        width:100%
+
+        color: white
+        text-decoration: none
+    a:hover
+        background-color: white
+        color: $font-color
+
+.icon, .links_hidden
+    display: none
+    
+@media (max-width: $breakpoint-small)
+    nav
+        position: relative
+        .links
+            > a.item
+                display: none
+            
+        .links_hidden.open_nav
+            display: flex
+
+            flex-direction: column-reverse
+
+            > a.item
+                display: flex
+            
+    .icon
+        display: flex
+        justify-content: center
+        align-items: center
+        min-height: 3em
+        padding: 0 1em
+
