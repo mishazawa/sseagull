@@ -12,14 +12,19 @@
     <div class="gallery_list-wrapper">
     {% for link in section.subsections %}
     {%- set s = get_section(path=link) -%}
+    {% set is_adopted = s.extra?.adopted or false %}
         <div class="gallery_list-item">
 
-            <a href="{{s.permalink}}">
+            <a href="{{s.permalink}}" class="image_ref">
                 {%- set resized = resize_image(path=s.colocated_path ~ s.extra.image, height=512, op="fit_height", quality=85) -%}
-
                 <img src="{{resized.url}}"/>
-                {{s.title}}
+                <div class="name">{{s.title}}</div>
+                {% if is_adopted %}
+                <span class="badge_adopted">{{trans(key="adopted", lang=lang)}}</span>
+                {% endif %}
             </a>
+
+
         </div>
         {% endfor %}
     </div>

@@ -1,12 +1,14 @@
+{%set parent = get_section(path=section.ancestors[1])%}
+<div class="gallery_nav">
+    <a href="{{parent.permalink}}">{{trans(key="back_btn", lang=lang)}}</a>
+</div>
+<hr>
+
 <h2>
     <a href="{{ section.permalink }}" style="color: inherit;">{{ section.title | safe}}</a>
 </h2>
-
 <div class="dog_description">
-
-    
     {{ section.content | safe }}
-    
 </div>
 
 {% if section.extra.gallery %}
@@ -18,3 +20,8 @@
     height={500}
     colocated_path={section.colocated_path} />}}
 {% endif %}
+<hr>
+
+<div class="gallery_nav">
+    <a href="{{parent.permalink}}">{{trans(key="back_btn", lang=lang)}}</a>
+</div>

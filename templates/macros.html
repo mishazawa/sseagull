@@ -105,7 +105,6 @@
 
 {% component macros.photoswipe_script(gallery="") %}
 <script type="module">
-    console.log('asdasd {{gallery}}')
     import PhotoSwipeLightbox from '/javascript/photoswipe-lightbox.esm.js';
     const lightbox = new PhotoSwipeLightbox({
         gallery: '{{gallery}}',
