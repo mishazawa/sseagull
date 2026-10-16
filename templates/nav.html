@@ -1,4 +1,11 @@
+{%- set show_banner = section?.extra?.show_banner -%}
+
 <nav class="nav">
+  {%- if show_banner -%}
+    <div class="nav_wrapper abs">
+    {%- else -%}
+    <div class="nav_wrapper">
+  {%- endif -%}
     <div class="logo">
       <a href="/" class="item">
         
@@ -47,8 +54,6 @@
         {%- endif -%}
         {% endfor %}
     </div>
-
-
     <script>
       var elem = document.getElementById("links");
       var open = false;
@@ -58,4 +63,12 @@
         elem.classList.toggle("open_nav", open);
       }
     </script>
+    </div>
+    {%- if show_banner -%}
+    <div class="collage">
+      {%- set res = resize_image(path="HEAD.png", height=1024, op="fit_height") -%}
+
+      <img alt="collage" src="{{ res.url }}" />
+    </div>
+    {%- endif -%}
 </nav>

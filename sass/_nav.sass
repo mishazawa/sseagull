@@ -2,15 +2,20 @@
     
 // nav bar
 nav
-    color: white
-    background-color: $color-main
-    display: flex
-    flex-wrap: wrap
-    flex-direction: row
-    justify-content: space-between
-    align-items: center
-    padding: 2em
+    position: relative
+
     
+    .nav_wrapper
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 2rem
+
+    .nav_wrapper.abs
+        position: absolute
+        z-index: 2
+        width: calc(100% - 4rem) // idk
+
     *
         text-decoration: none
 
@@ -46,8 +51,6 @@ nav
             text-decoration: none
             background-color: $color-nav-link-hover
             color: white
-        a.active
-        
         a:hover
             background-color: white
             color: $font-color
@@ -97,7 +100,7 @@ nav
 .icon, .links_hidden
     display: none
 
-@media (max-width: $breakpoint-small)
+@media (max-width: $breakpoint-pre-small)
     nav
         position: relative
         .links

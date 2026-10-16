@@ -8,17 +8,18 @@ body
         border: none
         border-top: 1px solid $color-nav-link-active
 
-
-.collage, .promo
-    min-height: 30vh
-    padding: 2em 0
-
+.collage
+    width: 100%
+    z-index: 1
     img
         width: 100%
+        object-fit: contain
+
 
 .odd
     width: 100%
     padding: 2em 0
+
 
 :root
   --gallery-gap: 1.5em
@@ -43,13 +44,20 @@ body
 @media (min-width: $breakpoint-medium)
     .gallery_list-item, .gallery-image
         --gallery-items-per-row: 3
-
+    #carouselStacked
+        --bs-carousel-items: 3
 
 // medium screen
 @media (min-width: $breakpoint-small) and (max-width: $breakpoint-medium)
     .gallery_list-item, .gallery-image
         --gallery-items-per-row: 2
+    #carouselStacked
+        --bs-carousel-items: 3
 
+
+@media (width: $breakpoint-very-small)
+    #carouselStacked
+        --bs-carousel-items: 1
 
 .dog_description
     padding: 1em 0
@@ -114,3 +122,25 @@ body
         
 #iban
     font-weight: bold
+
+
+.promo
+    border: 0px solid red
+    border-radius: 15px
+    // background: $custom-color-4
+
+#carouselStacked
+    width: 100%
+    height: 50vh
+
+    --bs-carousel-items-gap: .5rem
+
+    .slider_item
+        overflow: hidden
+        display: flex
+        justify-content: center
+        margin: 1rem 0
+
+        img, video
+            object-fit: contain
+
